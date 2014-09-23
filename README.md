@@ -1,3 +1,14 @@
-CodeComb.Mobile.Android
+CodeComb  Android Client
 =======================
-Test
+
+
+开发环境
+=======================
+ADT
+
+依赖的库
+=======================
+
+
+
+
