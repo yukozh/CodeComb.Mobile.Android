@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.codecomb.module.broadcast.BroadcastManager;
 import com.codecomb.ufreedom.R;
@@ -109,10 +110,10 @@ public class BroadcastFragment extends Fragment {
 						String message = vBroadcastMessage.getText().toString().trim();
 						
 						if(BroadcastManager.getInstance().sendBroadcast(message)){
-							
-							Log.e(TAG, "推送成功");
+						
+							Toast.makeText(getActivity(), "广播发送成功", Toast.LENGTH_SHORT).show();
 						}else{
-							Log.e(TAG, "推送失败");
+							Toast.makeText(getActivity(), "广播发送失败", Toast.LENGTH_SHORT).show();
 
 						}
 		
