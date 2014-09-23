@@ -16,16 +16,16 @@ public class Base implements Serializable {
 
 	
 	@SerializedName("Code")
-	public String code;
+	private String code;
 
 	
 	@SerializedName("Info")
-	public String info;
+	private String info;
 	
 
 	
 	@SerializedName("IsSuccess")
-	public boolean isSuccess;
+	private boolean isSuccess;
 
 
 	public String getCode() {

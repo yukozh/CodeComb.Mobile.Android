@@ -29,8 +29,8 @@ public class Auth extends Base {
 
 	@Override
 	public String toString() {
-		return "[" + "AccessToken:" + accessToken + " Code:" + this.code
-				+ " isSuccess:" + this.isSuccess() + " info:  " + this.info
+		return "[" + "AccessToken:" + accessToken + " Code:" + this.getCode()
+				+ " isSuccess:" + this.isSuccess() + " info:  " + this.getInfo()
 				+ "" + "" + "]";
 	}
 

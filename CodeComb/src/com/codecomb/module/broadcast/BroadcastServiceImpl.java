@@ -33,10 +33,10 @@ public class BroadcastServiceImpl implements BroadcastService {
 	}
 
 	@Override
-	public Base pushBroadcast(Context context, String content,String accessToken)
+	public Base sendBroadcast(Context context, String content,String accessToken)
 			throws AppException {
 		// TODO Auto-generated method stub
-		return broadcastRepository.pushBroadcast(context, content, accessToken);
+		return broadcastRepository.sendBroadcast(context, content, accessToken);
 	}
 
 

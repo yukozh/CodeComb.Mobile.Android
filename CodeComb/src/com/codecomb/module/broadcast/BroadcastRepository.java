@@ -21,7 +21,7 @@ import com.codecomb.xceptions.AppException;
 
 public interface BroadcastRepository {
 
-	public Base pushBroadcast(Context context,String content,String accessToken) throws AppException;
+	public Base sendBroadcast(Context context,String content,String accessToken) throws AppException;
 	
 }
 

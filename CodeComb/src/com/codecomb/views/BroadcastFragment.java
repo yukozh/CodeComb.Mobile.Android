@@ -3,19 +3,24 @@ package com.codecomb.views;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
+import com.codecomb.module.broadcast.BroadcastManager;
 import com.codecomb.ufreedom.R;
+import com.commonsware.cwac.richedit.RichEditText;
 import com.dd.processbutton.iml.SubmitProcessButton;
 
 public class BroadcastFragment extends Fragment {
 
+	private static String TAG = BroadcastFragment.class.getSimpleName();
 	
 	private View rootView;
 	private SubmitProcessButton vPushBroadcast;
+	private RichEditText vBroadcastMessage;
 	
 	
 	
@@ -60,7 +65,7 @@ public class BroadcastFragment extends Fragment {
 		rootView = inflater.inflate(R.layout.fgm_broadcast, container, false);
 		
 		vPushBroadcast = (SubmitProcessButton) rootView.findViewById(R.id.vPushBroadcast);
-		
+		vBroadcastMessage = (RichEditText) rootView.findViewById(R.id.vBroadcastMessage);
 		
 		
 		initListener();
@@ -101,17 +106,21 @@ public class BroadcastFragment extends Fragment {
 					protected Boolean doInBackground(Void... params) {
 
 						
+						String message = vBroadcastMessage.getText().toString().trim();
 						
-						
-						
-						
-						
-						
+						if(BroadcastManager.getInstance().sendBroadcast(message)){
+							
+							Log.e(TAG, "推送成功");
+						}else{
+							Log.e(TAG, "推送失败");
+
+						}
+		
 						return null;
 					}
 					
 					
-				};
+				}.execute();
 				
 				
 			}

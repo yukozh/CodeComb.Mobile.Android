@@ -215,7 +215,7 @@ public class ContestsFragment extends Fragment {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 
-			List<Contest> cs = ContestManager.getInstance().getContests(10);
+			List<Contest> cs = ContestManager.getInstance().getContests();
 			
 			Log.e(TAG, "Contest:" + cs);
 			

@@ -28,7 +28,7 @@ public class ContestRepositoryImpl implements ContestRepository {
 	public List<Contest> getContests(Context context, String accessToken)
 			throws AppException {
 		
-		return ApiClient.getContacts(context, accessToken);
+		return ApiClient.getContests(context, accessToken);
 	}
 
 	@Override

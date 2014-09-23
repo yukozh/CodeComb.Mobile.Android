@@ -13,6 +13,7 @@ package com.codecomb.infrastructure.repository;
 
 import android.content.Context;
 
+import com.codecomb.infrastructure.respository.wabapi.net.ApiClient;
 import com.codecomb.module.base.Base;
 import com.codecomb.module.broadcast.BroadcastRepository;
 import com.codecomb.module.login.Auth;
@@ -23,11 +24,11 @@ import com.codecomb.xceptions.AppException;
 public class BroadcastRepositoryImpl implements BroadcastRepository {
 
 	@Override
-	public Base pushBroadcast(Context context, String content,String accessToken)
+	public Base sendBroadcast(Context context, String content,String accessToken)
 			throws AppException {
-
-
-		return null;
+		
+		return ApiClient.broadCast(context, accessToken, content);
+		
 	}
 
 
