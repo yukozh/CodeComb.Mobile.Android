@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="54.0dip"
+    android:background="@drawable/navigation_bar_bottom" >
+
+    <Button
+        android:id="@+id/vContest"
+        style="@style/NavigateView.Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/btn_contest_selector"
+        android:text="@string/lb_contest" />
+
+    <Button
+        android:id="@+id/vBroadcast"
+        style="@style/NavigateView.Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/btn_broadcast_selector"
+        android:text="@string/lb_broadcast" />
+
+    <Button
+        android:id="@+id/vMessage"
+        style="@style/NavigateView.Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/btn_msg_selector"
+        android:text="@string/lb_msg" />
+
+    <Button
+        android:id="@+id/vAboutMe"
+        style="@style/NavigateView.Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/btn_about_me_selector"
+        android:text="@string/lb_about_me" />
+
+</LinearLayout>

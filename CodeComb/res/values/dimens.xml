@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="dim_logo_top">35dip</dimen>
+    <dimen name="dim_code_come_principle_size">20sp</dimen>
+    <dimen name="dim_login_input_panel_megrin">40dip</dimen>
+    <dimen name="dim_login_input_text_megrin">17dip</dimen>
+    <dimen name="dim_login_input_text_size">26sp</dimen>
+    <dimen name="dim_login">50dip</dimen>
+    <dimen name="dim_broadcast_content_sp">20sp</dimen>
+        <dimen name="dim_broadcast_editview">300dip</dimen>
+    
+    <dimen name="dim_login_preference_text_size">20sp</dimen>
+    <dimen name="dim_login_preference">10dip</dimen>
+    <dimen name="dim_login_preference_panel_mergrin">10dip</dimen>
+    <dimen name="dim_copyright_megrin">10dip</dimen>
+    <dimen name="dim_header_height">160dp</dimen>
+    <dimen name="dim_header_logo_size">100dp</dimen>
+    <dimen name="dim_lv_item_normal_margin">10dip</dimen>
+    <dimen name="dim_lv_item_small_margin">5dip</dimen>
+    <dimen name="dim_lv_item_large_text_size">18sp</dimen>
+    <dimen name="dim_lv_item_smallest_margin">2dip</dimen>
+    <dimen name="android_spaces">8dp</dimen>
+    <dimen name="android_spaces_large">16dp</dimen>
+    <dimen name="android_spaces_small">4dp</dimen>
+    <dimen name="dim_normal_sp">20sp</dimen>
+    <dimen name="dim_divide_small">1dp</dimen>
+    <dimen name="dim_normal_megrin">16dp</dimen>
+    <dimen name="dim_larger_megrin">30dp</dimen>
+    <dimen name="dim_small_megrin">8dp</dimen>
+    <dimen name="dim_thumbprint_content">60dip</dimen>
+    <dimen name="dim_layout_small">24dp</dimen>
+    <dimen name="dim_layout_normal">56dp</dimen>
+    <dimen name="dim_layout_larger">72dp</dimen>
+    <dimen name="dim_rich_edittext_larger">200dp</dimen>
+    <dimen name="dim_avatar">90dip</dimen>
+
+</resources>
