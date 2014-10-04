@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:actionBarSize"
+    android:background="@drawable/bk_clarification" >
+
+    <ImageView
+        android:id="@+id/vBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_action_back"
+        android:layout_marginLeft="@dimen/dim_small_megrin"
+        android:contentDescription="@string/lb_back" />
+
+      <TextView
+        android:id="@+id/vTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="@color/col_white"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:textSize="?android:attr/windowTitleSize"/>
+    
+    
+    <TextView
+        android:id="@+id/vSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="@string/lb_save"
+        android:textColor="@color/col_white"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dim_small_megrin"
+        android:textSize="@dimen/dim_actionview_text_size"/>
+
+</RelativeLayout>

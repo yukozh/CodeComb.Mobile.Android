@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ufreedom="http://schemas.android.com/apk/res/com.codecomb.ufreedom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/vAvatarPanel"
+        android:layout_width="@dimen/dim_72dp"
+        android:layout_height="@dimen/dim_72dp" >
+
+        <com.codecomb.view.widgets.CircularImageView
+            android:id="@+id/vAvatar"
+            android:layout_width="@dimen/dim_avatar_normal"
+            android:layout_height="@dimen/dim_avatar_normal"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_small_megrin"
+            android:layout_marginRight="@dimen/dim_small_megrin"
+            android:scaleType="centerInside"
+            ufreedom:border_color="#EEEEEE"
+            ufreedom:border_width="4dp"
+            ufreedom:shadow="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/vAvatarPanel"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/vNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/vMotto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

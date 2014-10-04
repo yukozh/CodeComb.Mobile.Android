@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/vChatNavigationBar"
+        layout="@layout/layout_chat_navigation" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/vChatNavigationBar"
+        android:background="#FFFFFF" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/szly" >
+
+            <ListView
+                android:id="@+id/lvMessageContent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="4dip"
+                android:background="@color/col_chat_white"
+                android:cacheColorHint="#0000"
+                android:divider="@null"
+                android:dividerHeight="5dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:stackFromBottom="true" />
+
+            <RelativeLayout
+                android:id="@+id/vChatMemberOnlineNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/col_white_transparent"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+            </RelativeLayout>
+        </FrameLayout>
+
+        <com.codecomb.view.widgets.ResizeLayout
+            android:id="@+id/szly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/input_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_chatting_footer" />
+
+            <LinearLayout
+                android:id="@+id/add_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/input_bottom"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <!-- <include layout="@layout/layout_chat_input_attach_panel_one" /> -->
+            </LinearLayout>
+        </com.codecomb.view.widgets.ResizeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

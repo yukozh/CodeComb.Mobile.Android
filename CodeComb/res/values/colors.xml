@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="col_white">#FFFFFF</color>
+    <color name="col_actionbar_white">#f5f5f5</color>
+    <color name="col_red">#ff3c12</color>
+    <color name="col_login_normal">#33977f</color>
+    <color name="col_push_broadcast_normal">#329866</color>
+    <color name="col_push_broadcast_progress">#ffaa66cc</color>
+    <color name="col_pushb_roadcast_pressed">#1064f7</color>
+    <color name="col_login_pressed">#005245</color>
+    <color name="col_red_error"></color>
+    <color name="col_blue_pressed">#ff0099cc</color>
+    <color name="col_blue_normal">#ff33b5e5</color>
+    <color name="col_blue">#1b7ff7</color>
+    <color name="col_green_complete">#ff99cc00</color>
+    <color name="col_purple_progress">#ffaa66cc</color>
+    <color name="col_red_error">#ffff4444</color>
+    <color name="col_holo_blue_bright">#ff00ddff</color>
+    <color name="col_holo_green_light">#ff99cc00</color>
+    <color name="col_holo_orange_light">#ffffbb33</color>
+    <color name="col_holo_red_light">#ffff4444</color>
+    <color name="col_actionbar_title_color">@android:color/white</color>
+    <color name="col_contest_status_pending">#86a8d6</color>
+    <color name="col_contest_status_live">#e29aa5</color>
+    <color name="col_contest_status_ended">#828282</color>
+    <color name="col_item_pressed">#f5f5f5</color>
+    <color name="col_divide_gray">#d1d1d1</color>
+    <color name="col_thumbprint">#6e6e6e</color>
+    <color name="col_thumbprint_content">#9a9a9a</color>
+    <color name="col_pressed_gray">#d7d7d7</color>
+    <color name="col_red_gray">#c28e94</color>
+    <color name="col_message_content_bk">#e6e6e6</color>
+    <color name="col_dialog_item_pressed">#cbcbcb</color>
+    <color name="col_dialog_title_gray">#8f8f8f</color>
+
+    
+    <!-- 聊天界面所用color -->
+
+    <color name="col_normal_text">#ff353535</color>
+    <color name="col_hint_color_white_bg">#ffc5c5c5</color>
+    <color name="col_chatting_top_text">#ff737780</color>
+    <color name="col_footer_text">#ff727272</color>
+    <color name="col_chat_white">#fff</color>
+    <color name="col_chat_black">#333</color>
+    <color name="col_chat_member_online">#74777e</color>
+    <color name="col_chat_member_online_num">#96dd22</color>
+    <color name="col_green_light">#ff99cc00</color>
+    <color name="col_white_transparent">#f3ffffff</color>
+    <color name="col_lightgrey">#ff737373</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+
+</resources>

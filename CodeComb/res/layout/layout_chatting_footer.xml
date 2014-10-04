@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/chatting_foot_bar_group"
+        style="@style/MMFooter"
+        android:layout_width="match_parent"
+        android:background="@drawable/bottombar_bg"
+        android:orientation="horizontal" >
+
+        <!-- android:background="@drawable/bottombar_button_bg" -->
+
+        <LinearLayout
+            android:id="@+id/chatting_mode_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="@dimen/ChattingFootSwitcherWidth"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:paddingBottom="@dimen/ChattingFootPaddingBottom"
+                android:scaleType="center"
+                android:src="@drawable/chatting_setmode_keyboard_btn" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/ChattingFootSendMargin"
+            android:layout_marginRight="6.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/chatting_mode_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="8.0dip"
+                android:layout_marginRight="8.0dip"
+                android:background="@null"
+                android:contentDescription="@string/lb_chat_footer_switch_mode_btn"
+                android:minWidth="0.0dip"
+                android:paddingBottom="@dimen/ChattingFootPaddingBottom"
+                android:src="@drawable/chatting_setmode_voice_btn"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/text_panel_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:layout_marginTop="5.5dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/edittext_group_bg_selector"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/vMessageContent"
+                    style="@style/MMEditText"
+                    android:layout_weight="1.0"
+                    android:background="@null"
+                    android:hint="@null"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxHeight="@dimen/ChattingFootEditMaxHeigh"
+                    android:minHeight="@dimen/ChattingFootEditMinHeigh"
+                    android:singleLine="false"
+                    android:textColor="@color/col_chat_black" />
+
+                <ImageButton
+                    android:id="@+id/chatting_smiley_btn"
+                    android:layout_width="@dimen/ChattingFootSendHeight"
+                    android:layout_height="@dimen/ChattingFootSendHeight"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="@dimen/OneDPPadding"
+                    android:background="@null"
+                    android:contentDescription="@string/lb_chat_footer_smiley_btn"
+                    android:padding="@dimen/SmallPadding"
+                    android:src="@drawable/chatting_setmode_biaoqing_btn"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/voice_record_bt"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ChattingFootVoiceHeight"
+                android:layout_marginLeft="@dimen/SmallPadding"
+                android:layout_marginRight="@dimen/ChattingFootSmallerPadding"
+                android:layout_weight="1.0"
+                android:background="@drawable/record_shape_normal"
+                android:soundEffectsEnabled="true"
+                android:text="@string/lb_chatfooter_presstorcd"
+                android:textColor="@color/col_footer_text"
+                android:textSize="@dimen/NormalTextSize"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/chatting_send_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/ChattingFootPaddingBottom"
+                android:paddingLeft="6.0dip" >
+
+                <TextView
+                    android:id="@+id/chatting_wordcount_tv"
+                    style="@style/ChattingUIWordCount"
+                    android:gravity="top"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center" >
+
+                    <ImageButton
+                        android:id="@+id/chatting_attach_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:contentDescription="@string/lb_chat_footer_app_btn"
+                        android:gravity="center"
+                        android:paddingLeft="6.0dip"
+                        android:paddingRight="5.5dip"
+                        android:src="@drawable/btn_attach_selecttor"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/vMessageSend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/ChattingFootSendHeight"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/btn_chat_send_selector"
+                        android:gravity="center"
+                        android:minWidth="@dimen/ChattingFootSendMinWidth"
+                        android:text="@string/lb_chatting_send"
+                        android:textColor="@color/col_footer_text"
+                        android:textSize="@dimen/HintTextSize" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

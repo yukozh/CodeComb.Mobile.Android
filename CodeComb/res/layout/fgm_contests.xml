@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/vTitlePanle"
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:background="@drawable/bk_clarification" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dim_normal_megrin"
+            android:layout_toRightOf="@id/vBack"
+            android:text="@string/lb_contest"
+            android:textColor="@color/col_white"
+            android:textSize="@dimen/dim_contest_title" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lvContests"
+        android:layout_below="@id/vTitlePanle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,218 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="ToogleButnNoText" parent="@android:style/Widget.Button.Toggle">
+        <item name="android:textOff">""</item>
+        <item name="android:textOn">""</item>
+        <item name="android:background">@drawable/toogle_btn_selector</item>
+    </style>
+
+    <style name="NavigateView.Btn" parent="@android:style/Widget.Button">
+        <item name="android:textSize">10.0sp</item>
+        <item name="android:textColor">@drawable/text_navigate_bar_color</item>
+        <item name="android:background">@drawable/btn_navigate_bar_bg</item>
+        <item name="android:paddingTop">8.0dip</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:shadowDy">1.3</item>
+        <item name="android:shadowRadius">0.1</item>
+        <item name="android:drawablePadding">3.0dip</item>
+    </style>
+
+    <style name="TransparentTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent" parent="@android:Widget.ActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:displayOptions">homeAsUp|showHome|showTitle</item>
+        <item name="android:titleTextStyle">@style/ActionBarStyle.Transparent.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    
+    
+    <style name="NoTitleTheme" parent="@android:style/Theme.NoTitleBar">
+    </style>
+
+    <!--
+          ************************
+          ||||||||||||||||||||||||
+                   HEADER
+          ||||||||||||||||||||||||
+          ************************
+    -->
+    <style name="Header.TitleText" parent="android:TextAppearance.Holo">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:shadowColor">#8000</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+    </style>
+
+    <style name="Header.SubTitleText" parent="Header.TitleText">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    
+    
+     <!-- 群组聊天界面所用style -->
+
+    <style name="chatting_top_time_text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/col_footer_text </item>
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:paddingTop">4dip</item>
+    </style>
+
+    <style name="MMFooter">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">49.0dip</item>
+    </style>
+
+    <style name="MMEditText">
+        <item name="android:textSize">@dimen/NormalTextSize</item>
+        <item name="android:textColor">@color/col_normal_text</item>
+        <item name="android:textColorHint">@color/col_hint_color_white_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/edittext_bg_selector</item>
+        <item name="android:paddingTop">@dimen/BasicPaddingSize</item>
+        <item name="android:paddingBottom">@dimen/BasicPaddingSize</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/InputEditTextMinHeight</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="ChattingUIWordCount">
+        <item name="android:textSize">13.0dip</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="chat_text_date_style">
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/col_chatting_top_text</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="chat_content_date_style">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+
+    <style name="chat_text_name_style">
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="app_grid_item_name_font">
+        <item name="android:textSize">12.0dip</item>
+    </style>
+
+    <style name="ChattingUIContent">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/SmallPadding</item>
+        <item name="android:paddingRight">@dimen/SmallPadding</item>
+        <item name="android:paddingBottom">@dimen/NormalPadding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="mediumCustomProgressBar" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/progress_medium_holo</item>
+    </style>
+
+    <style name="ChattingUIState">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/SmallPadding</item>
+    </style>
+
+    <style name="ChattingUISmallPaddingTo">
+        <item name="android:background">@drawable/chatto_bg</item>
+        <item name="android:paddingLeft">@dimen/SmallerPadding</item>
+        <item name="android:paddingTop">@dimen/SmallerPadding</item>
+        <item name="android:paddingRight">@dimen/MiddlePadding</item>
+        <item name="android:paddingBottom">@dimen/SmallerPadding</item>
+    </style>
+
+    <style name="ChattingUIThumbnail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">240.0dip</item>
+    </style>
+
+    <style name="ChattingUISenderText">
+        <item name="android:textSize">@dimen/SmallestTextSize</item>
+        <item name="android:textColor">#ffaaaaaa</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:paddingLeft">7.0dip</item>
+        <item name="android:paddingRight">7.0dip</item>
+        <item name="android:paddingBottom">1.5dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">0.0dip</item>
+        <item name="android:maxWidth">240.0dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="smallCustomProgressBar" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminateDrawable">@drawable/progress_small_holo</item>
+    </style>
+
+    <style name="largeCustomProgressBar" parent="@android:style/Widget.ProgressBar.Large">
+        <item name="android:indeterminateDrawable">@drawable/progress_large_holo</item>
+    </style>
+
+    <style name="ChattingUIAvatarTo">
+        <item name="android:layout_width">@dimen/SmallAvatarSize</item>
+        <item name="android:layout_height">@dimen/SmallAvatarSize</item>
+        <item name="android:layout_marginLeft">6.0dip</item>
+        <!-- <item name="android:src">@drawable/mini_avatar_shadow</item> -->
+    </style>
+
+    <style name="ChattingUIVoiceLength">
+        <item name="android:textSize">@dimen/HintTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/col_lightgrey</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/SmallPadding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+
+</resources>

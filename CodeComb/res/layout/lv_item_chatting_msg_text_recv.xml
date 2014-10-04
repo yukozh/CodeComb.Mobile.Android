@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dp" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/vAvatar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_launcher"
+            android:clickable="true"
+            android:onClick="head_xiaohei" />
+
+        <LinearLayout
+            android:id="@+id/vChatContentPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/vAvatar"
+            android:orientation="vertical" >
+
+         
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp" >
+
+                <TextView
+                    android:id="@+id/vMessageContent"
+                    style="@style/chat_content_date_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@drawable/chatto_bg" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dip"
+                    android:layout_toRightOf="@id/vMessageContent" 
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/vChatMessageState"
+                        style="@style/ChattingUIState"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/msg_state_failed_resend"
+                        android:visibility="gone" />
+
+                    <ProgressBar
+                        android:id="@+id/vChatMsgLoding"
+                        style="@style/smallCustomProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+                </FrameLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/vActionBar"
+        layout="@layout/layout_edit_navigation" />
+
+    <LinearLayout
+        android:id="@+id/vClarificationQuestionPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vActionBar"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/dim_normal_megrin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_clarification_question" />
+
+        <TextView
+            android:id="@+id/vClarificationQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_normal_megrin"
+            android:text="样例为什么是这个答案" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vClarificationAnswerPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vClarificationQuestionPanel"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/dim_normal_megrin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_clarification_answer" />
+
+        <com.commonsware.cwac.richedit.RichEditText
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/vClarificationAnswer"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dim_clarification_answer_editview"
+            android:layout_marginTop="@dimen/dim_normal_megrin"
+            android:background="@color/col_message_content_bk"
+            android:gravity="top|left"
+            android:inputType="textMultiLine" >
+
+            <requestFocus />
+        </com.commonsware.cwac.richedit.RichEditText>
+    </LinearLayout>
+
+</RelativeLayout>
