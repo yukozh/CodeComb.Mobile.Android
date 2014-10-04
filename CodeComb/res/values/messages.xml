@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="msg_login_input_error">用户名或密码错误</string>
-    <string name="msg_login_input_empty">用户名或密码不能为空</string>
-    <string name="msg_get_date_error">获取数据异常</string>
-
-</resources>
