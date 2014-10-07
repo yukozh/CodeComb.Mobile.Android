@@ -35,14 +35,19 @@ public class AvatarDownloader<Token> extends HandlerThread {
 	Map<Token, String> requestMap = Collections
 			.synchronizedMap(new HashMap<Token, String>());
 
+	Map<Token, String> cacheMap = Collections
+			.synchronizedMap(new HashMap<Token, String>());
+	
+	
 	Handler responseHandler;
-	Listener<Token> listener;
+	DownloadListener<Token> listener;
 
-	public interface Listener<Token> {
+	public interface DownloadListener<Token> {
 		public void onAvatarDownloaded(Token token, Bitmap avatar);
+		public void cache(String key,Bitmap value);
 	}
 
-	public void setListener(Listener<Token> listener) {
+	public void setDownloadListener(DownloadListener<Token> listener) {
 		this.listener = listener;
 	}
 
@@ -68,8 +73,7 @@ public class AvatarDownloader<Token> extends HandlerThread {
 
 					@SuppressWarnings("unchecked")
 					Token token = (Token) msg.obj;
-					Log.e(TAG,
-							"Got a reauest from url:" + requestMap.get(token));
+		//			Log.e(TAG,"Got a reauest from url:" + requestMap.get(token));
 
 					handleRequest(token);
 				}
@@ -93,7 +97,7 @@ public class AvatarDownloader<Token> extends HandlerThread {
 			
 
 			
-			Log.e(TAG, "Bitmap created");
+	//		Log.e(TAG, "Bitmap created");
 			
 
 			responseHandler.post(new Runnable() {
@@ -107,6 +111,8 @@ public class AvatarDownloader<Token> extends HandlerThread {
 
 					requestMap.remove(token);
 					listener.onAvatarDownloaded(token, bitmap);
+					listener.cache(cacheMap.get(token), bitmap);
+					cacheMap.remove(token);
 
 				}
 			});
@@ -118,15 +124,16 @@ public class AvatarDownloader<Token> extends HandlerThread {
 
 	}
 
-	public void queryAvatar(Token token, String url) {
+	public void queryAvatar(Token token,String cacheKey, String url) {
 
 		requestMap.put(token, url);
-
+		cacheMap.put(token, cacheKey);
+		
 		handler.obtainMessage(MESSAGE_DOWNLOAD,token).sendToTarget();
 		
 		
 		
-		Log.e(TAG, "Got an url:" + url);
+	//	Log.e(TAG, "Got an url:" + url);
 	}
 	
 	  public void clearQueue() {

@@ -32,6 +32,12 @@ public interface ContestRepository {
 	public List<Contest> getManagedContests(Context context,String  accessToken) throws AppException;
 	
 	
+	public void saveManagedContest(Context context,int userID,Contest  contest) throws  AppException;
+	
+	public void saveManagedContests(Context context,int userID,List<Contest>  cts) throws  AppException;
+
+	public List<Contest> getManagedContestsFromLocal(Context context,int userID,int  page) throws AppException;
+	
 	
 }
 

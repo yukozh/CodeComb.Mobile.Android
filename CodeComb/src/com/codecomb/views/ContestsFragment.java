@@ -20,12 +20,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.codecomb.infrastructure.asynctask.DataLoader;
 import com.codecomb.module.contests.Contest;
@@ -38,6 +41,8 @@ public class ContestsFragment extends Fragment
 			LoaderCallbacks<List<Contest>> {
 
 	private static final int LOAD_CONTESTS = 0;
+
+	private static final String TAG = ContestsFragment.class.getSimpleName();;
 
 	private View rootView;
 	private ListView lvContest;
@@ -57,7 +62,13 @@ public class ContestsFragment extends Fragment
 
 		contests = new ArrayList<Contest>();
 		contestsAdapter = new ContestsAdapter(getActivity(), contests);
+	
+		
 		loaderManager = getLoaderManager();
+		loaderManager.initLoader(LOAD_CONTESTS, null, this);
+
+		Log.e(TAG, "ContestsFragment -   onCreate");
+
 	}
 
 	@Override
@@ -69,7 +80,10 @@ public class ContestsFragment extends Fragment
 		lvContest = (ListView) rootView.findViewById(R.id.lvContests);
 		lvContest.setAdapter(contestsAdapter);
 
-		loaderManager.initLoader(LOAD_CONTESTS, null, this);
+	
+		lvContest.setEmptyView(rootView.findViewById(R.id.vEmptyView));
+		
+		
 
 		initListener();
 

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,18 +44,19 @@ public class MessageFragment extends Fragment implements LoaderCallbacks<List<Co
 	private ContactsAdapter contactsAdapter;
 	private List<Contact> contacts;
 
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		Log.e(TAG, "MessageFragment -   onCreate");
+		
+	}
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class MessageFragment extends Fragment implements LoaderCallbacks<List<Co
 		rootView = inflater.inflate(R.layout.fgm_message, container, false);
 		lvContact = (ListView) rootView.findViewById(R.id.lvContact);
 
+		lvContact.setEmptyView(rootView.findViewById(R.id.vEmptyView));
+		
 		contacts = new ArrayList<Contact>();
 		contactsAdapter = new ContactsAdapter(getActivity(), contacts);
 		lvContact.setAdapter(contactsAdapter);
@@ -94,7 +98,7 @@ public class MessageFragment extends Fragment implements LoaderCallbacks<List<Co
 				Intent intent = new Intent(getActivity(),ChatActivity.class);
 				intent.putExtra(ChatFragment.EXTRA_CHAT_CONTACT, contact);
 				startActivity(intent);
-			
+				
 			}
 			
 		});

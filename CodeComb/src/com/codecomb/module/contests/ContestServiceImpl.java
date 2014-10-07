@@ -60,7 +60,32 @@ public class ContestServiceImpl implements ContestService {
 
 		return contestRepository.getManagedContests(context, accessToken);
 	}
-	
+
+	@Override
+	public void saveManagedContest(Context context, int userID, Contest contest)
+			throws AppException {
+
+		contestRepository.saveManagedContest(context, userID, contest);		
+	}
+
+	@Override
+	public void saveManagedContests(Context context, int userID,
+			List<Contest> cts) throws AppException {
+
+		contestRepository.saveManagedContests(context, userID, cts);		
+	}
+
+	@Override
+	public List<Contest> getManagedContestsFromLocal(Context context,
+			int userID, int page) throws AppException {
+		// TODO Auto-generated method stub
+		return contestRepository.getManagedContestsFromLocal(context, userID, page);
+	}
+
+
+
+
+
 	
 
 

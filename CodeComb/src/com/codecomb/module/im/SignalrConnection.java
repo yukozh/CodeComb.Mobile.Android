@@ -4,25 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.content.OperationApplicationException;
+import android.content.Context;
 import android.util.Log;
 
 import com.codecomb.MyApplication;
 import com.codecomb.SettingsManager;
-import com.codecomb.exceptions.AppException;
+import com.codecomb.events.AppExitEvent;
+import com.codecomb.events.ShowBroadcastEvent;
 import com.codecomb.infrastructure.wabapi.net.Constants;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.codecomb.utils.JsonUtil;
 import com.zsoft.SignalA.Hubs.HubConnection;
 import com.zsoft.SignalA.Hubs.HubInvokeCallback;
 import com.zsoft.SignalA.Hubs.HubOnDataCallback;
 import com.zsoft.SignalA.Hubs.IHubProxy;
 import com.zsoft.SignalA.Transport.StateBase;
-import com.zsoft.SignalA.Transport.Longpolling.JSONHelper;
 import com.zsoft.SignalA.Transport.Longpolling.LongPollingTransport;
+
+import de.greenrobot.event.EventBus;
 
 public class SignalrConnection {
 
@@ -31,6 +30,7 @@ public class SignalrConnection {
 	private HubConnection connection;
 	private IHubProxy mobileHub;
 
+	private Context context;
 	public static SignalrConnection getInstance() {
 		return SingletonCreator.instance;
 	}
@@ -41,6 +41,9 @@ public class SignalrConnection {
 
 	private SignalrConnection() {
 
+		EventBus.getDefault().register(this);
+		context = MyApplication.getInstance().getApplicationContext();
+		
 		connection = new HubConnection(Constants.SIGNALR_ADDRESS, MyApplication
 				.getInstance().getApplicationContext(),
 
@@ -104,10 +107,10 @@ public class SignalrConnection {
 			@Override
 			public void OnReceived(JSONArray args) {
 
-				Log.e(TAG, "收到消息:" + args.toString());
-
+			
+	//			EventBus.getDefault().post(new ShowNewMessageEvent());
 				
-
+				Log.e(TAG, "收到消息:" + args.toString());
 				
 				
 			}
@@ -120,10 +123,12 @@ public class SignalrConnection {
 
 				
 				
+				
 				Log.e(TAG, "收到广播:" + args.toString());
 				
+				EventBus.getDefault().post(new ShowBroadcastEvent(JsonUtil.convertToString(args)));
+						
 				
-
 			}
 		});
 
@@ -146,9 +151,7 @@ public class SignalrConnection {
 
 				} else {
 					Log.e(TAG, "注册推送服务失败:" + response);
-
 				}
-
 			}
 
 			@Override
@@ -160,6 +163,7 @@ public class SignalrConnection {
 
 	}
 
+	
 
 	public void stopSignalR() {
 		if (connection != null) {
@@ -167,5 +171,13 @@ public class SignalrConnection {
 
 		}
 	}
+	
+	
+	public void onEvent(AppExitEvent event){
+		stopSignalR();
+	}
+	
+	
+	
 
 }

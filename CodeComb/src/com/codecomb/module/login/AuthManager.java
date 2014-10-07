@@ -50,9 +50,13 @@ public class AuthManager {
 	
 	public  Auth login(LoginParams params) throws AppException  {
 		
+		Auth auth = new Auth();
+		
 		try {
-					
-			return loginService.login(context, params.getUsername(),params.getPassword());
+			
+			
+			
+			auth =  loginService.login(context, params.getUsername(),params.getPassword());
 	
 		} catch (AppException e) {
 			e.printStackTrace();
@@ -61,6 +65,7 @@ public class AuthManager {
 			
 		}
 			
+		return auth;
 	}
 	
 	

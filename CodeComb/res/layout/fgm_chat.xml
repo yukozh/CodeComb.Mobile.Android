@@ -14,33 +14,25 @@
         android:layout_below="@id/vChatNavigationBar"
         android:background="#FFFFFF" >
 
-        <FrameLayout
+        <ListView
+            android:id="@+id/lvMessageContent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_above="@+id/szly" >
+            android:layout_above="@+id/szly"
+            android:layout_marginTop="4dip"
+            android:background="@color/col_chat_white"
+            android:cacheColorHint="#0000"
+            android:divider="@null"
+            android:dividerHeight="5dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:stackFromBottom="true" />
 
-            <ListView
-                android:id="@+id/lvMessageContent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="4dip"
-                android:background="@color/col_chat_white"
-                android:cacheColorHint="#0000"
-                android:divider="@null"
-                android:dividerHeight="5dp"
-                android:scrollbarStyle="outsideOverlay"
-                android:stackFromBottom="true" />
-
-            <RelativeLayout
-                android:id="@+id/vChatMemberOnlineNum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/col_white_transparent"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal" >
-            </RelativeLayout>
-        </FrameLayout>
+        <ProgressBar
+            android:id="@+id/vEmptyView"
+            style="@style/largeCustomProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
         <com.codecomb.view.widgets.ResizeLayout
             android:id="@+id/szly"

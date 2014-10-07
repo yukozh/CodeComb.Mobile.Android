@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,24 +17,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codecomb.SettingsManager;
+import com.codecomb.events.AppExitEvent;
 import com.codecomb.exceptions.AppException;
 import com.codecomb.infrastructure.asynctask.AvatarDownloader;
-import com.codecomb.infrastructure.asynctask.AvatarDownloader.Listener;
+import com.codecomb.infrastructure.asynctask.AvatarDownloader.DownloadListener;
 import com.codecomb.infrastructure.asynctask.DataLoader;
-import com.codecomb.module.im.SignalrConnection;
+import com.codecomb.infrastructure.cache.BitmapCacheManage;
 import com.codecomb.module.profile.Profile;
 import com.codecomb.module.profile.ProfileManager;
 import com.codecomb.ufreedom.R;
+import com.codecomb.utils.CodeCombUtil;
 import com.codecomb.view.widgets.CircularImageView;
+
+import de.greenrobot.event.EventBus;
 
 public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile> {
 
@@ -48,6 +51,10 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 	private CircularImageView vAvatar;
 	// private View vScanPanel;
 
+	
+	
+	private Profile profile;
+
 	private LoaderManager loaderManager;
 	private AvatarDownloader<CircularImageView> avatartThead;
 
@@ -59,18 +66,30 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		EventBus.getDefault().register(this);
+		
+
+		
+	//	Log.e(TAG, "ProfileFragment -   onCreate");
+
+		
 		loaderManager = getLoaderManager();		
 		
 		loaderManager.initLoader(LOAD_PROFILE, null, this);
 
 		
 		
-		avatartThead = new AvatarDownloader<CircularImageView>(new Handler());
+		
+	}
+	
+	
 
-		initThreadCallback();
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		
 
-		avatartThead.start();
-		avatartThead.getLooper();
+        
 	}
 
 	@Override
@@ -83,6 +102,12 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 
 		// new LoadContactTask().execute();
 
+		avatartThead = new AvatarDownloader<CircularImageView>(new Handler());
+
+    	initThreadCallback();
+
+		avatartThead.start();
+		avatartThead.getLooper();
 
 		return rootView;
 	}
@@ -100,23 +125,12 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 		vProfileName = (TextView) rootView.findViewById(R.id.vProfileName);
 		vAvatar = (CircularImageView) rootView.findViewById(R.id.vAvatar);
 
+		vAvatar.setImageResource(R.drawable.ic_avatar_default);
 		rootView.findViewById(R.id.vScanPanel).setOnClickListener(
 				new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
-
-						//
-						// new Thread(new Runnable() {
-						//
-						// @Override
-						// public void run() {
-						//
-						// // SignalrConnection.getInstance().register();
-						//
-						// }
-						// }).start();
-						//
 
 					}
 				});
@@ -137,7 +151,7 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 				String filename = SettingsManager.getInstance().getUsername()
 						+ ".png";
 
-				file = ProfileManager.getInstance().getMottoFile(filename);
+				file = CodeCombUtil.getAvatarFile(filename);
 
 				URL url = new URL(profile.getAvatarURL());
 
@@ -187,6 +201,7 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 
 					vAvatar.setImageBitmap(getAvatorBitmap(file
 							.getAbsolutePath()));
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -199,17 +214,24 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 
 	private void initThreadCallback() {
 
-		avatartThead.setListener(new Listener<CircularImageView>() {
+		avatartThead.setDownloadListener(new DownloadListener<CircularImageView>() {
 
 			@Override
 			public void onAvatarDownloaded(CircularImageView token,
 					Bitmap avatar) {
-
 				token.setImageBitmap(avatar);
-
+				
 			}
 
+			@Override
+			public void cache(String key, Bitmap value) {
+
+				BitmapCacheManage.getInstance().addBitmapToCache(key, value);
+				
+			}
 		});
+		
+	
 	}
 
 	private static class ProfileLoader extends DataLoader<Profile> {
@@ -237,6 +259,9 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 	@Override
 	public void onLoadFinished(Loader<Profile> arg0, Profile profile) {
 
+		
+		this.profile = profile;
+		
 		vProfileName.setText(profile.getNickname());
 		vMotto.setText(profile.getMotto());
 
@@ -246,9 +271,21 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 		
 		vProfileRating.setText(ratting);
 
-		Log.e(TAG, "开始下载我的头像:" + profile.getAvatarURL());
+	//	Log.e(TAG, "开始下载我的头像:" + profile.getAvatarURL());
 
-		avatartThead.queryAvatar(vAvatar, profile.getAvatarURL());
+		String key = Integer.toString(profile.getUserId());
+		
+		Bitmap bitmap = BitmapCacheManage.getInstance().getBitmapFromCache(key);
+		
+		if (bitmap != null) {
+			vAvatar.setImageBitmap(bitmap);
+		}else{			
+			avatartThead.queryAvatar(vAvatar,key ,profile.getAvatarURL());		
+		}
+		
+		
+		
+		
 
 	}
 
@@ -260,9 +297,13 @@ public class ProfileFragment extends Fragment implements LoaderCallbacks<Profile
 	private Bitmap getAvatorBitmap(String path) {
 
 		Bitmap bitmap = BitmapFactory.decodeFile(path);
-
 		return bitmap;
 
+	}
+	
+	public void onEvent(AppExitEvent event){
+		
+		BitmapCacheManage.getInstance().cleanCache();
 	}
 
 }

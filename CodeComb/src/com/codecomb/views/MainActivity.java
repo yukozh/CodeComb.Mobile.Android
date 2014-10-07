@@ -10,13 +10,21 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.codecomb.events.AppExitEvent;
+import com.codecomb.events.ShowBroadcastEvent;
 import com.codecomb.ufreedom.R;
 
-public class MainActivity extends FragmentActivity implements
-		View.OnClickListener {
+import de.greenrobot.event.EventBus;
+
+public class MainActivity extends FragmentActivity
+		implements
+			View.OnClickListener {
 
 	private ViewPager viewPager;
 	private Button vContest;
@@ -31,18 +39,23 @@ public class MainActivity extends FragmentActivity implements
 	private static final int ACTIVITY_ITEM_MESSAGE = 2;
 	private static final int ACTIVITY_ITEM_ABOUT_ME = 3;
 	protected static final String TAG = "com.ufreedom.codecomb.uis.MainActivity";
+	private static final int PRESSED_BACK_TIMESPAN = 3000;
+
+	private long lastBackPressedTime = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+		EventBus.getDefault().register(this);
+		
+		
 		initWidget();
 
 		initViewPagerListener();
 
 		updateBottomNavigateBtnState(ACTIVITY_ITEM_CONTEST);
-
 
 	}
 
@@ -85,31 +98,31 @@ public class MainActivity extends FragmentActivity implements
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.vContest:
+			case R.id.vContest :
 
-			viewPager.setCurrentItem(ACTIVITY_ITEM_CONTEST);
+				viewPager.setCurrentItem(ACTIVITY_ITEM_CONTEST);
 
-			break;
+				break;
 
-		case R.id.vBroadcast:
+			case R.id.vBroadcast :
 
-			viewPager.setCurrentItem(ACTIVITY_ITEM_BROADCAST);
+				viewPager.setCurrentItem(ACTIVITY_ITEM_BROADCAST);
 
-			break;
+				break;
 
-		case R.id.vMessage:
-			viewPager.setCurrentItem(ACTIVITY_ITEM_MESSAGE);
+			case R.id.vMessage :
+				viewPager.setCurrentItem(ACTIVITY_ITEM_MESSAGE);
 
-			break;
+				break;
 
-		case R.id.vAboutMe:
-			viewPager.setCurrentItem(ACTIVITY_ITEM_ABOUT_ME);
+			case R.id.vAboutMe :
+				viewPager.setCurrentItem(ACTIVITY_ITEM_ABOUT_ME);
 
-			break;
+				break;
 
-		default:
+			default :
 
-			break;
+				break;
 		}
 
 	}
@@ -117,56 +130,56 @@ public class MainActivity extends FragmentActivity implements
 	private void updateBottomNavigateBtnState(int which) {
 
 		switch (which) {
-		case ACTIVITY_ITEM_CONTEST:
+			case ACTIVITY_ITEM_CONTEST :
 
-			vContest.setSelected(true);
-			vBroadcast.setSelected(false);
-			vMessage.setSelected(false);
-			vAboutMe.setSelected(false);
+				vContest.setSelected(true);
+				vBroadcast.setSelected(false);
+				vMessage.setSelected(false);
+				vAboutMe.setSelected(false);
 
-			break;
+				break;
 
-		case ACTIVITY_ITEM_BROADCAST:
+			case ACTIVITY_ITEM_BROADCAST :
 
-			vBroadcast.setSelected(true);
+				vBroadcast.setSelected(true);
 
-			vContest.setSelected(false);
-			vMessage.setSelected(false);
-			vAboutMe.setSelected(false);
-			break;
+				vContest.setSelected(false);
+				vMessage.setSelected(false);
+				vAboutMe.setSelected(false);
+				break;
 
-		case ACTIVITY_ITEM_MESSAGE:
+			case ACTIVITY_ITEM_MESSAGE :
 
-			vMessage.setSelected(true);
+				vMessage.setSelected(true);
 
-			vContest.setSelected(false);
-			vBroadcast.setSelected(false);
-			vAboutMe.setSelected(false);
+				vContest.setSelected(false);
+				vBroadcast.setSelected(false);
+				vAboutMe.setSelected(false);
 
-			break;
+				break;
 
-		case ACTIVITY_ITEM_ABOUT_ME:
+			case ACTIVITY_ITEM_ABOUT_ME :
 
-			vAboutMe.setSelected(true);
+				vAboutMe.setSelected(true);
 
-			vContest.setSelected(false);
-			vBroadcast.setSelected(false);
-			vMessage.setSelected(false);
+				vContest.setSelected(false);
+				vBroadcast.setSelected(false);
+				vMessage.setSelected(false);
 
-			break;
+				break;
 
-		default:
-			break;
+			default :
+				break;
 		}
 
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.home, menu);
-//		return true;
-//	}
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// // Inflate the menu; this adds items to the action bar if it is present.
+	// getMenuInflater().inflate(R.menu.home, menu);
+	// return true;
+	// }
 
 	public class MyPagerAdapter extends FragmentPagerAdapter {
 
@@ -190,7 +203,45 @@ public class MainActivity extends FragmentActivity implements
 			return fragments.size();
 		}
 
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+			long time = System.currentTimeMillis();
+
+			if (time - lastBackPressedTime < PRESSED_BACK_TIMESPAN) {
+
+				EventBus.getDefault().post(new AppExitEvent());
+				finish();
+
+			} else {
+				lastBackPressedTime = time;
+				Toast.makeText(this, R.string.msg_press_again_exit,
+						Toast.LENGTH_SHORT).show();
+			}
+
+			return true;
+
+		}
+
+		return false;
+	}
 	
+	
+
+	public void onEvent(ShowBroadcastEvent event) {
+
+		Log.e(TAG, "显示广播");
+
+		
+		FragmentManager fragmentManager = getSupportFragmentManager();
+
+		BroadcastDialogFragment fragment = BroadcastDialogFragment
+				.newInstance(event.getContent());
+		fragment.show(fragmentManager, "BroadcastDialog");
 
 	}
 

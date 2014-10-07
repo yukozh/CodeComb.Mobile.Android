@@ -52,6 +52,7 @@ public class LoginActivity extends Activity implements OnCompleteListener  {
 		vLogin = (ActionProcessButton) findViewById(R.id.vLogin);
 		vLogin.setMode(ActionProcessButton.Mode.ENDLESS);
 
+		
 		vUsername = (EditText) findViewById(R.id.vUsername);
 		vPassword = (EditText) findViewById(R.id.vPassword);
 		vRememberPassword = (ToggleButton) findViewById(R.id.vRememberPassword);
@@ -135,6 +136,7 @@ public class LoginActivity extends Activity implements OnCompleteListener  {
 		
 							try {
 								
+								auth = new Auth();
 								
 								auth = AuthManager.getInstance().login(loginParams);
 								
@@ -169,14 +171,13 @@ public class LoginActivity extends Activity implements OnCompleteListener  {
 							
 							vUsername.setEnabled(true);
 							vPassword.setEnabled(true);
+							
 							if (result) {
 								progressGenerator.complete();
-								
-								
-								
+				
 							} else {
 								
-								Log.e(TAG, auth.toString());
+							//	Log.e(TAG, auth.toString());
 								Toast.makeText(context,
 										auth.getInfo(),
 										Toast.LENGTH_SHORT).show();

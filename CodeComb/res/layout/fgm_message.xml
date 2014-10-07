@@ -11,10 +11,17 @@
         android:layout_alignParentTop="true"
         layout="@layout/layout_chat_contact_navigation" />
 
+    <ProgressBar
+        android:id="@+id/vEmptyView"
+        style="@style/largeCustomProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <ListView
         android:id="@+id/lvContact"
         android:layout_width="match_parent"
-        android:layout_below="@id/vChatNavigationBar"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vChatNavigationBar" />
 
 </RelativeLayout>

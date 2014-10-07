@@ -52,6 +52,34 @@ public class ContestRepositoryImpl implements ContestRepository {
 		return ApiClient.getManagerContests(context, accessToken);
 	}
 
+	@Override
+	public void saveManagedContest(Context context, int userID, Contest contest)
+			throws AppException {
+
+
+		
+	}
+
+	@Override
+	public void saveManagedContests(Context context, int userID,
+			List<Contest> cts) throws AppException {
+
+
+		
+		
+	}
+
+	@Override
+	public List<Contest> getManagedContestsFromLocal(Context context,
+			int userID, int page) throws AppException {
+
+
+	
+		
+		return null;
+	}
+
+	
 
 
 }

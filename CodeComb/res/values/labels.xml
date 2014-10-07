@@ -30,7 +30,11 @@
     <string name="lb_save">保存</string>
     <string name="lb_back">返回</string>
     <string name="lb_cancle">取消</string>
+     <string name="lb_ok">确定</string>
     <string name="lb_clarification_status">可见范围</string>
+        
+
+    
     <string name="lb_clarification_status_broadcast">所有人</string>
     <string name="lb_clarification_status_private">仅提问者</string>
     <string name="lb_clarification_status_description">您希望哪些人可以看到您的回答？</string>

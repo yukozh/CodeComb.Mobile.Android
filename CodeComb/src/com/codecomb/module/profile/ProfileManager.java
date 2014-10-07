@@ -54,6 +54,10 @@ public class ProfileManager {
 
 			profile = profileService.getProfile(context, accessToken);
 
+			
+			
+			
+			
 		} catch (AppException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,38 +75,6 @@ public class ProfileManager {
 		return profile;
 	}
 
-	public File getMottoFile(String fileName) throws Exception {
-
-		File imageDir = getMottoDir();
-
-		return new File(imageDir, fileName);
-
-	}
-
-	public File getMottoDir() throws Exception {
-
-		File moduleDir = getModuleDir();
-
-		File audioDir = new File(moduleDir, "Motto");
-		if (!audioDir.exists()) {
-			audioDir.mkdirs();
-		}
-
-		return audioDir;
-
-	}
-
-	public File getModuleDir() throws Exception {
-
-		File userDir = Utils.getCurrentUserDir(MyApplication.getInstance()
-				.getApplicationContext());
-
-		File moduleDir = new File(userDir, "profile");
-		if (!moduleDir.exists()) {
-			moduleDir.mkdirs();
-		}
-		return moduleDir;
-
-	}
+	
 
 }

@@ -21,11 +21,19 @@
             android:textSize="@dimen/dim_contest_title" />
     </RelativeLayout>
 
+
+    <ProgressBar
+        android:id="@+id/vEmptyView"
+        style="@style/largeCustomProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <ListView
         android:id="@+id/lvContests"
-        android:layout_below="@id/vTitlePanle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vTitlePanle" >
     </ListView>
 
 </RelativeLayout>

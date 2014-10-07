@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.codecomb.infrastructure.cache.BitmapCacheManage;
 import com.codecomb.module.base.Base;
 import com.codecomb.module.contacts.Contact;
 import com.codecomb.module.im.Message;
@@ -34,6 +36,7 @@ import com.codecomb.module.im.MessageManager;
 import com.codecomb.module.profile.Profile;
 import com.codecomb.ufreedom.R;
 import com.codecomb.utils.DateUtils;
+import com.codecomb.view.widgets.CircularImageView;
 
 public class ChatAdapter extends BaseAdapter {
 
@@ -160,26 +163,40 @@ public class ChatAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	private View getRecvTextView(View converView, Message message) {
+	private View getRecvTextView(View convertView, Message message) {
 
 		ViewHolder holder = null;
-		if (converView == null) {
+		if (convertView == null) {
 
 			holder = new ViewHolder();
-			converView = layoutInflater.inflate(
+			convertView = layoutInflater.inflate(
 					R.layout.lv_item_chatting_msg_text_recv, null);
 
-			holder.vContent = (TextView) converView
+			holder.vContent = (TextView) convertView
 					.findViewById(R.id.vMessageContent);
-			converView.setTag(holder);
+			holder.vAvatar = (CircularImageView) convertView.findViewById(R.id.vAvatar);
+			
+			convertView.setTag(holder);
 
 		} else {
-			holder = (ViewHolder) converView.getTag();
+			holder = (ViewHolder) convertView.getTag();
 		}
+		
+		
+		
+		Bitmap avatar = BitmapCacheManage.getInstance().getBitmapFromCache(Integer.toString(message.getSenderID()));
+		
+		if (avatar != null) {
+			holder.vAvatar.setImageBitmap(avatar);
+		}else{
+			holder.vAvatar.setImageResource(R.drawable.ic_avatar_default);
+		}
+		
+		
 
 		holder.vContent.setText(message.getContent());
 
-		return converView;
+		return convertView;
 
 	}
 
@@ -194,12 +211,22 @@ public class ChatAdapter extends BaseAdapter {
 
 			holder.vContent = (TextView) convertView
 					.findViewById(R.id.vMessageContent);
+			holder.vAvatar = (CircularImageView) convertView.findViewById(R.id.vAvatar);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
 		holder.vContent.setText(message.getContent());
+
+		Bitmap avatar = BitmapCacheManage.getInstance().getBitmapFromCache(Integer.toString(message.getSenderID()));
+		
+		if (avatar != null) {
+			holder.vAvatar.setImageBitmap(avatar);
+		}else{
+			holder.vAvatar.setImageResource(R.drawable.ic_avatar_default);
+		}
+		
 
 		return convertView;
 
@@ -294,7 +321,8 @@ public class ChatAdapter extends BaseAdapter {
 	}
 
 	class ViewHolder {
-		public TextView vContent;
+		private TextView vContent;
+		private CircularImageView vAvatar;
 
 	}
 

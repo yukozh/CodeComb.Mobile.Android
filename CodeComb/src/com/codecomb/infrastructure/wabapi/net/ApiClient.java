@@ -220,7 +220,6 @@ public class ApiClient {
 		String jsonRsp = NetClientFactory.getClient().doPost(context,
 				getRequestUrl("SendMessage"), params);
 
-		Log.e(TAG, "发送消息:"+jsonRsp);
 		
 		return GsonUtils.createGson().fromJson(jsonRsp, Base.class);
 

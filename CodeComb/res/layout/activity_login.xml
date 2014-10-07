@@ -55,13 +55,11 @@
             android:text="@string/lb_login"
             android:textColor="@color/col_white"
             android:textSize="@dimen/dim_login_input_text_size"
-            
             ufreedom:pb_colorComplete="@color/col_green_complete"
             ufreedom:pb_colorError="@color/col_red_error"
-           ufreedom:pb_colorNormal="@color/col_login_normal"
+            ufreedom:pb_colorNormal="@color/col_login_normal"
             ufreedom:pb_colorPressed="@color/col_login_pressed"
             ufreedom:pb_colorProgress="@color/col_purple_progress"
-           
             ufreedom:pb_textComplete="@string/lb_login_success"
             ufreedom:pb_textError="@string/lb_login_error"
             ufreedom:pb_textProgress="@string/lb_login_loading" />

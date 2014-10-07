@@ -22,11 +22,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.codecomb.events.AppExitEvent;
 import com.codecomb.infrastructure.asynctask.AvatarDownloader;
-import com.codecomb.infrastructure.asynctask.AvatarDownloader.Listener;
+import com.codecomb.infrastructure.asynctask.AvatarDownloader.DownloadListener;
+import com.codecomb.infrastructure.cache.BitmapCacheManage;
+import com.codecomb.infrastructure.cache.MemoryCacheManager;
 import com.codecomb.module.contacts.Contact;
 import com.codecomb.ufreedom.R;
 import com.codecomb.view.widgets.CircularImageView;
+
+import de.greenrobot.event.EventBus;
 
 public class ContactsAdapter extends BaseAdapter {
 
@@ -37,7 +42,12 @@ public class ContactsAdapter extends BaseAdapter {
 	private List<Contact> contacts;
 	private AvatarDownloader<CircularImageView> avatartThead;
 
+	
+
+	
 	public ContactsAdapter(Context context, List<Contact> cts) {
+
+		EventBus.getDefault().register(this);
 
 		this.context = context;
 		this.contacts = cts;
@@ -46,13 +56,11 @@ public class ContactsAdapter extends BaseAdapter {
 
 		avatartThead = new AvatarDownloader<CircularImageView>(new Handler());
 		initListener();
-		
+
 		avatartThead.start();
 		avatartThead.getLooper();
-		
-	}
 
-	
+	}
 
 	@Override
 	public int getCount() {
@@ -101,30 +109,60 @@ public class ContactsAdapter extends BaseAdapter {
 		viewHolder.vNickname.setText(contact.getNickName());
 
 		viewHolder.vMotto.setText(contact.getMotto());
-		viewHolder.vAvatar.setImageResource(R.drawable.ic_launcher);
 
-		avatartThead.queryAvatar(viewHolder.vAvatar, contact.getAvatarURL());
-		
+		viewHolder.vAvatar.setImageResource(R.drawable.ic_avatar_default);
+
+
+		Bitmap avatar = BitmapCacheManage.getInstance().getBitmapFromCache(
+				Integer.toString(contact.getUserID()));
+
+		if (avatar != null) {
+
+	//		Log.e(TAG, "缓存中存在头像，开始设置");
+
+			
+			viewHolder.vAvatar.setImageBitmap(avatar);
+
+		} else {
+
+	//		Log.e(TAG, "缓存中不存在头像，开始下载");
+
+			avatartThead.queryAvatar(viewHolder.vAvatar,
+					Integer.toString(contact.getUserID()),
+					contact.getAvatarURL());
+		}
+
 		return convertView;
 	}
 
-	
 	private void initListener() {
 
-		avatartThead.setListener(new Listener<CircularImageView>() {
+		avatartThead
+				.setDownloadListener(new DownloadListener<CircularImageView>() {
 
-			@Override
-			public void onAvatarDownloaded(CircularImageView token,
-					Bitmap avatar) {
+					@Override
+					public void onAvatarDownloaded(CircularImageView token,
+							Bitmap avatar) {
 
-				Log.e(TAG, "头像下载完毕，开始更新头像");
-				token.setImageBitmap(avatar);
-		
-			}	
-		});
-		
+			//			Log.e(TAG, "头像下载完毕，开始更新头像");
+						token.setImageBitmap(avatar);
+
+					}
+
+					@Override
+					public void cache(String key, Bitmap value) {
+
+						BitmapCacheManage.getInstance().addBitmapToCache(key, value);
+					
+			//			Log.e(TAG, "存储头像到缓存");
+
+						
+
+					}
+
+				});
+
 	}
-	
 
 	class ViewHolder {
 
@@ -132,5 +170,17 @@ public class ContactsAdapter extends BaseAdapter {
 		private TextView vMotto;
 		private CircularImageView vAvatar;
 	}
+	
+	
+	
+	public void  onEvent(AppExitEvent event){
+		
+		Log.e(TAG, "清理缓存");
+		BitmapCacheManage.getInstance().cleanCache();
+	}
+	 
+	
+	
+	
 
 }

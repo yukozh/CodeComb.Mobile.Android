@@ -11,15 +11,14 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp" >
 
-        <ImageView
+        <com.codecomb.view.widgets.CircularImageView
             android:id="@+id/vAvatar"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/ic_launcher"
             android:clickable="true"
-            android:onClick="head_xiaohei" />
+            />
 
         <LinearLayout
             android:id="@+id/vChatContentPanel"

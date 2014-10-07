@@ -5,4 +5,5 @@
     <string name="msg_login_input_empty">用户名或密码不能为空</string>
     <string name="msg_get_date_error">获取数据异常</string>
     <string name="msg_msg_not_empty">发送内容不能为空</string>
+    <string name="msg_press_again_exit">再按一次将会退出CodeComb</string>
 </resources>

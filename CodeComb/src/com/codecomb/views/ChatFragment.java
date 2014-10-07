@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codecomb.events.ShowNewMessageEvent;
 import com.codecomb.infrastructure.asynctask.DataLoader;
 import com.codecomb.module.contacts.Contact;
 import com.codecomb.module.im.Message;
@@ -38,10 +40,14 @@ import com.codecomb.module.profile.ProfileManager;
 import com.codecomb.ufreedom.R;
 import com.codecomb.views.adapter.ChatAdapter;
 
+import de.greenrobot.event.EventBus;
+
 public class ChatFragment extends Fragment
 		implements
 			LoaderCallbacks<List<Message>> {
 
+	private static final String TAG = ChatFragment.class.getSimpleName();
+	
 	public static final String EXTRA_CHAT_CONTACT = "chat_contact";
 
 	private static final int LOAD_CHAT_RECORDS = 0;
@@ -50,12 +56,14 @@ public class ChatFragment extends Fragment
 	private static Contact contact;
 	// private List<Message> messages;
 	private ChatAdapter chatAdapter;
-	private ListView listView;
+	private ListView lvMessageContent;
 	private View vBack;
 	private TextView vTitle;
 	private View vMessageSend;
 	private EditText vMessageContent;
 	private LoaderManager loaderManager;
+
+	private ExecutorService refreshMessageExecutorService ;
 
 	public static ChatFragment newInstance(Contact contact) {
 
@@ -73,7 +81,27 @@ public class ChatFragment extends Fragment
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
+		EventBus.getDefault().post(this);
+		
+		refreshMessageExecutorService =  Executors
+				.newSingleThreadExecutor(new ThreadFactory() {
+
+					@Override
+					public Thread newThread(Runnable r) {
+						// TODO Auto-generated method stub
+						Thread thread = new Thread(r);
+						thread.setName("send message");
+						thread.setDaemon(true);
+						return thread;
+					}
+				});
+		
+
 		contact = (Contact) getArguments().getSerializable(EXTRA_CHAT_CONTACT);
+
+		
+		loaderManager = getLoaderManager();
+		initLoader();
 
 		super.onCreate(savedInstanceState);
 	}
@@ -89,9 +117,7 @@ public class ChatFragment extends Fragment
 
 		initListView();
 
-		loaderManager = getLoaderManager();
-		initLoader();
-
+		
 		return rootView;
 	}
 
@@ -116,6 +142,7 @@ public class ChatFragment extends Fragment
 		vMessageContent = (EditText) rootView
 				.findViewById(R.id.vMessageContent);
 
+		
 	}
 
 	private void initListnener() {
@@ -141,15 +168,20 @@ public class ChatFragment extends Fragment
 					Toast.makeText(getActivity(), R.string.msg_msg_not_empty,
 							Toast.LENGTH_SHORT).show();
 				} else {
-
-					
-					Toast.makeText(getActivity(), "开始发送", Toast.LENGTH_SHORT).show();
 					chatAdapter.sendMessage(content);
-                    vMessageContent.setText("");
+					vMessageContent.setText("");
 					
-					restartLoader();
-					
+					refreshMessageExecutorService.submit(new Runnable() {
 
+						@Override
+						public void run() {
+							
+							Log.e(TAG, "重新加载消息");
+
+							
+							restartLoader();
+						}
+					});
 
 				}
 
@@ -160,10 +192,16 @@ public class ChatFragment extends Fragment
 
 	private void initListView() {
 
-		listView = (ListView) rootView.findViewById(R.id.lvMessageContent);
-		chatAdapter = new ChatAdapter(getActivity(), listView, ProfileManager
-				.getInstance().getProfile(),contact);
-		listView.setAdapter(chatAdapter);
+		lvMessageContent = (ListView) rootView.findViewById(R.id.lvMessageContent);
+		
+		lvMessageContent.setEmptyView(rootView.findViewById(R.id.vEmptyView));
+		
+		
+		
+		chatAdapter = new ChatAdapter(getActivity(), lvMessageContent, ProfileManager
+				.getInstance().getProfile(), contact);
+		
+		lvMessageContent.setAdapter(chatAdapter);
 
 	}
 
@@ -197,7 +235,11 @@ public class ChatFragment extends Fragment
 	}
 
 	@Override
-	public void onLoaderReset(Loader<List<Message>> arg0) {
+	public void onLoaderReset(Loader<List<Message>> msgs) {
+
+		// chatAdapter.addAll(msgs.);
+
+	//	updateUI();
 
 	}
 
@@ -205,6 +247,19 @@ public class ChatFragment extends Fragment
 
 		chatAdapter.refreshAndSetListViewTobottom();
 
+	}
+
+	public void onEvent(ShowNewMessageEvent event) {
+
+		Log.e(TAG, "显示消息");
+		
+		refreshMessageExecutorService.submit(new Runnable() {
+
+			@Override
+			public void run() {
+				restartLoader();
+			}
+		});
 	}
 
 }
