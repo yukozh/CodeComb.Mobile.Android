@@ -1,6 +1,7 @@
 package com.codecomb.views;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
@@ -82,6 +83,7 @@ public class LoginActivity extends Activity implements OnCompleteListener  {
 				if(isChecked){
 					
 				}
+				
 				
 				
 				

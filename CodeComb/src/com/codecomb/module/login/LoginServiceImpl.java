@@ -41,5 +41,12 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepository.logout(context);
 	}
 
+	@Override
+	public Base loginByBarcode(Context context, String accessToken,
+			String barcode) throws AppException {
+
+		return loginRepository.loginByBarcode(context, accessToken, barcode);
+	}
+
 }
 

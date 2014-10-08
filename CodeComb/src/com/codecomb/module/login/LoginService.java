@@ -20,6 +20,7 @@ public interface LoginService {
 	
 	public Auth login(Context context,String username,String password)throws AppException;
 	public Base logout(Context context) throws AppException;
+	public Base loginByBarcode(Context context,String accessToken,String barcode) throws AppException;
 
 
 }

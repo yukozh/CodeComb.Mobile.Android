@@ -37,5 +37,12 @@ public class LoginRepositoryImpl implements LoginRepository {
 		return null;
 	}
 
+	@Override
+	public Base loginByBarcode(Context context, String accessToken,
+			String barcode) throws AppException {
+		// TODO Auto-generated method stub
+		return ApiClient.loginByBarCode(context, accessToken, barcode);
+	}
+
 }
 

@@ -34,7 +34,6 @@
     <color name="col_dialog_item_pressed">#cbcbcb</color>
     <color name="col_dialog_title_gray">#8f8f8f</color>
 
-    
     <!-- 聊天界面所用color -->
 
     <color name="col_normal_text">#ff353535</color>
@@ -48,6 +47,14 @@
     <color name="col_green_light">#ff99cc00</color>
     <color name="col_white_transparent">#f3ffffff</color>
     <color name="col_lightgrey">#ff737373</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+
+    <!-- 二维码所用color -->
+
     <color name="viewfinder_frame">#ff000000</color>
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask">#60000000</color>
