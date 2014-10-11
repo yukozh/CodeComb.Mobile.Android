@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right|end"
         android:layout_marginBottom="@dimen/android_spaces"
-        
         android:layout_marginLeft="@dimen/android_spaces_large"
         android:layout_marginRight="@dimen/android_spaces_large"
         android:orientation="vertical" >
@@ -40,18 +39,5 @@
         android:layout_width="wrap_content"
         android:layout_height="?android:actionBarSize"
         android:background="@drawable/header_ab_shadow" />
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 </FrameLayout>

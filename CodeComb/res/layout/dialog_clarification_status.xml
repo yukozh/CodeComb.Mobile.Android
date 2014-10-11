@@ -23,8 +23,8 @@
             android:id="@+id/vStatusTitleDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_below="@id/vStatusTitle"
+            android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/dim_small_megrin"
             android:text="@string/lb_clarification_status_description"
             android:textColor="@color/col_dialog_title_gray" />

@@ -24,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/dim_normal_megrin"
             ufreedom:border_color="#EEEEEE"
-            ufreedom:border_width="4dp"  
+            ufreedom:border_width="4dp"
             ufreedom:shadow="true" />
 
         <LinearLayout

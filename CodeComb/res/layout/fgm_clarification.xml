@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:id="@+id/vClarificationTitlePanle"
@@ -28,16 +27,11 @@
             android:textColor="@color/col_white"
             android:textSize="@dimen/dim_contest_title" />
     </RelativeLayout>
-    
-   <ListView 
-       android:layout_below="@id/vClarificationTitlePanle"
-       android:id="@+id/lvClarification"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       
-       />
-    
-    
-    
+
+    <ListView
+        android:id="@+id/lvClarification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vClarificationTitlePanle" />
 
 </RelativeLayout>
