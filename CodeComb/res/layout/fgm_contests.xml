@@ -21,7 +21,6 @@
             android:textSize="@dimen/dim_contest_title" />
     </RelativeLayout>
 
-
     <ProgressBar
         android:id="@+id/vEmptyView"
         style="@style/largeCustomProgressBar"

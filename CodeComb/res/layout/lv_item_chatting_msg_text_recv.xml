@@ -17,8 +17,7 @@
             android:layout_height="52dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:clickable="true"
-            />
+            android:clickable="true" />
 
         <LinearLayout
             android:id="@+id/vChatContentPanel"
@@ -26,8 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/vAvatar"
             android:orientation="vertical" >
-
-         
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -47,8 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dip"
-                    android:layout_toRightOf="@id/vMessageContent" 
-                    android:visibility="gone">
+                    android:layout_toRightOf="@id/vMessageContent"
+                    android:visibility="gone" >
 
                     <ImageView
                         android:id="@+id/vChatMessageState"
@@ -67,4 +64,5 @@
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
+
 </LinearLayout>

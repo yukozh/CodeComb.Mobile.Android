@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="?android:actionBarSize"
     android:background="@drawable/bk_clarification" >
-<!-- 
+
+    <!--
     <ImageView
         android:id="@+id/vBack"
         android:layout_width="wrap_content"
@@ -12,21 +13,22 @@
         android:background="@drawable/ic_action_back"
         android:layout_marginLeft="@dimen/dim_small_megrin"
         android:contentDescription="@string/lb_back"
-        android:visibility="gone" /> -->
+        android:visibility="gone" />
+    -->
 
-      <TextView
+    <TextView
         android:id="@+id/vTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:textColor="@color/col_white"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:textSize="@dimen/dim_normal_sp"
         android:padding="@dimen/dim_small_megrin"
-        android:text="@string/lb_my_message"/>
-    
-    
- <!--    <TextView
+        android:text="@string/lb_my_message"
+        android:textColor="@color/col_white"
+        android:textSize="@dimen/dim_normal_sp" />
+
+    <!--
+         <TextView
         android:id="@+id/vSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
@@ -35,6 +37,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/dim_small_megrin"
-        android:textSize="@dimen/dim_actionview_text_size"/> -->
+        android:textSize="@dimen/dim_actionview_text_size"/>
+    -->
 
 </RelativeLayout>
